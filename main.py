@@ -21,8 +21,12 @@ def main():
     parser.add_argument(
         "--text",
         type=str,
-        default="Hello, welcome to Qwen3-TTS!",
-        help="Text to synthesize",
+        help="Text to synthesize (use --text-file for file input)",
+    )
+    parser.add_argument(
+        "--text-file",
+        type=str,
+        help="File containing text to synthesize",
     )
     parser.add_argument(
         "--language",
@@ -44,6 +48,14 @@ def main():
     )
     args = parser.parse_args()
 
+    if args.text_file:
+        with open(args.text_file, "r") as f:
+            text = f.read().strip()
+    elif args.text:
+        text = args.text
+    else:
+        parser.error("Either --text or --text-file must be provided")
+
     model_id = MODELS[args.model]
     print(f"Loading {args.model} model: {model_id}")
 
@@ -54,9 +66,9 @@ def main():
         attn_implementation="flash_attention_2",
     )
 
-    print(f"Generating speech for: {args.text}")
+    print(f"Generating speech for: {text}")
     wavs, sr = model.generate_custom_voice(
-        text=args.text,
+        text=text,
         language=args.language,
         speaker=args.speaker,
     )
