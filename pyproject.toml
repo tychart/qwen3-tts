@@ -4,4 +4,16 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+  "qwen-tts",
+  "flash-attn==2.8.3",
+]
+
+[tool.uv.extra-build-dependencies]
+flash-attn = [
+  "packaging",
+  "wheel",
+  "setuptools",
+  "ninja",
+  "torch"
+]
