@@ -75,7 +75,7 @@ def main():
 
     # print(f"Ref text: {get_file_from_file_path('skyward_30s_segment_suzy.txt')}")
 
-    voice_clone_prompt = model.create_voice_clone_prompt(
+    voice_clone_prompt_suzy = model.create_voice_clone_prompt(
         ref_audio="skyward_30s_segment_suzy.wav",
         ref_text=get_file_from_file_path("skyward_30s_segment_suzy.txt"),
         x_vector_only_mode=False,  
@@ -86,7 +86,7 @@ def main():
     wavs, sr = model.generate_voice_clone(
         text=text,
         language=args.language,
-        voice_clone_prompt=voice_clone_prompt,
+        voice_clone_prompt=voice_clone_prompt_suzy,
     )
 
     sf.write(args.output, wavs[0], sr)
