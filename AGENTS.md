@@ -17,9 +17,5 @@ This `qwen3-tts` repo contains:
 - Model loads with `torch.bfloat16`.
 - Run with `uv run python main.py --text-file story.txt --model small`.
 
-**AWX script**:
-- Requires AWX API token in `API_TOKEN` env var.
-- Passable to Python interpreter (or set via `uv run`).
-
 **Testing**:
 - No tests in repo.
